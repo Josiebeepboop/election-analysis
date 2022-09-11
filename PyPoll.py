@@ -1,6 +1,4 @@
-# The data we need to retrieve. Does the sequence matter here?
-import csv
-import os
+
 
 # 1. The total number of votes cast
 # 2. A complete list of candidates who received votes
@@ -8,28 +6,51 @@ import os
 # 4. The total number of votes each candidate won
 # 5. The winner of the election based on popular vote.
 
+# Add our dependencies. Does the sequence matter here?
+import csv
+import os
 # Assign a variable for the file to load and the path.
 file_to_load = os.path.join('Resources','election_results.csv')
 # Assign a variable to save the file to a path.
 file_to_save = os.path.join('Analysis','election_analysis.txt')
+# 1. Initialize the total vote counter to 0
+total_votes = 0
+# Candidate options
+candidate_options = []
+# Dictionary of candidates
+candidate_votes = {}
 # Open the election results and read the file.
-with open(file_to_load) as election_data:
-    # To do: read and analyze the data.
-    # print(election_data)
+with open(file_to_load) as election_data:    
     # read the file object with the reader function.
     file_reader = csv.reader(election_data)
-    # Print each row in the csv file
-    # for row in file_reader:
-    #     print(row)
     # Print the header row.
     headers = next(file_reader)
-    print(headers)
+    # Print each row in the csv file
+    for row in file_reader:
+        # 2. Add to the total vote count total_votes = total_votes + 1
+        total_votes += 1
+# # 3. Print the total votes.
+# print(total_votes)
 
 
-# Using the open() function with the "w" mode we will write data to the file.
-with open(file_to_save, "w") as txt_file:
-    # Write some data to the file.
-    txt_file.write("Counties in the Election\n-----------------\nArapahoe\nDenver\nJefferson")
+# # Using the open() function with the "w" mode we will write data to the file.
+# with open(file_to_save, "w") as txt_file:
+#     # Write some data to the file.
+#     txt_file.write("Counties in the Election\n-----------------\nArapahoe\nDenver\nJefferson")
+
+        # Print the candidate name from each row.
+        candidate_name = row[2]
+        # If the candidate does not match any existing candidate...
+        if candidate_name not in candidate_options:
+            # Add the candidate name to the candidate list.
+            candidate_options.append(candidate_name)
+        
+# Print the candidate list.
+print(candidate_options)
+
+
+
+
 
 
 
