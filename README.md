@@ -2,7 +2,7 @@
 ---
 ## Overview
 
-An audit is being conducted on recent election results. The election commission, has requested to review additional data to complete their audit. They would like to see the voter turnout for each county, the percentage of votes from each county (out of the total count), and the county with the highest turnout. In order to quickly turn out these results, the clients (Seth and Tom) have requested a review of the voting results they have collected along with the code they have written and add in code to efficiently pull out the commission's requested information.
+An appointed election commission is conducting an audit on recent congressional election results. The commission has requested additional data to complete their audit. They would like to see the voter turnout for each county, the percentage of votes from each county (out of the total count), and the county with the highest turnout. In order to quickly turn out these results, the clients (Seth and Tom) would like a review of the collected voting results along with their pre-written code in order to modify it to efficiently pull out the commission's requested information.
 
 Data provided by the client: [Election Results](Resources/election_results.csv)
 Software: Python 3.7.6, Visual Study Code, 1.71.0
@@ -85,3 +85,4 @@ After adding in the above code, the following was determined:
 
 It can then be concluded that Denver received the highest voter turnout.
 
+In order to make the code more flexible for future use, constants were created for the candidate and county columns, ```NAME_COL``` and ```COUNTY_COL```, respectively. By doing so, should data come in from different sources with potentially different headers, we could easily modify the desired column index at the beginning of the code. Similarly, we could avoid hardcoding the file path, which would make the code more portable. A quick Stackoverflow search reveals that using configuration files and then storing all paths in a json file may be a viable solution.

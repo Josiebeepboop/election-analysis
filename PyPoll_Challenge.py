@@ -5,6 +5,9 @@
 import csv
 import os
 
+NAME_COL = 2
+COUNTY_COL = 1
+
 # Add a variable to load a file from a path.
 file_to_load = os.path.join("Resources", "election_results.csv")
 # Add a variable to save the file to a path.
@@ -45,10 +48,10 @@ with open(file_to_load) as election_data:
         total_votes = total_votes + 1
 
         # Get the candidate name from each row.
-        candidate_name = row[2]
+        candidate_name = row[NAME_COL]
 
         # 3: Extract the county name from each row.
-        county_name = row[1]
+        county_name = row[COUNTY_COL]
 
         # If the candidate does not match any existing candidate add it to the candidate list
         if candidate_name not in candidate_options:
@@ -117,7 +120,6 @@ with open(file_to_save, "w") as txt_file:
         f'\n-------------------------\n'
         f'Largest County Turnout: {largest_turnout}\n'
         f'---------------------------\n')
-    
     print(turnout_results, end="")
 
     # 8: Save the county with the largest turnout to a text file.
