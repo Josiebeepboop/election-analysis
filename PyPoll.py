@@ -44,9 +44,27 @@ with open(file_to_load) as election_data:
         if candidate_name not in candidate_options:
             # Add the candidate name to the candidate list.
             candidate_options.append(candidate_name)
+            # Begin tracking that candidate's vote count.
+            candidate_votes[candidate_name] = 0
+        # Add a vote to the candidate's count.
+        candidate_votes[candidate_name] += 1
+# Determine the percentage of votes for each candidate by looping through the counts.
+# 1. Iterate through the candidate list.
+for candidate_name in candidate_votes:
+    # 2. Retrieve vote count of a candidate.
+    votes = candidate_votes[candidate_name]
+    # 3. Calculate the percentage of votes.
+    vote_percent = float(votes) / float(total_votes) * 100
+    # 4. Print the candidate name and percentage of votes.
+    print(f'{candidate_name}: received {vote_percent:.1f}% of the vote.')
+
         
-# Print the candidate list.
-print(candidate_options)
+# # Print the candidate list.
+# print(candidate_options)
+
+
+# # Print the candidate vote dictionary
+# print(candidate_votes)
 
 
 
