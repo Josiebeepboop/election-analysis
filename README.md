@@ -43,32 +43,41 @@ From the above breakdown, it can determined that Diana DeGette won the election 
 
 An election commission performing an audit on the recent election results requested to view the voter turnout for each county, the percentage of votes from each county (out of the total count), and the county with the highest turnout. The clients, Seth and Tom, have provided the data collected from the election along with the code to determine the winning candidate (with their percentage of total votes and total number of votes). 
 
-Using the data and the client's pre-written code, a new code was woven in to extract the commission's requested parameters. A new county list ```county_options``` and county dictionary ```county_votes``` were initiated to store the county names and their number of votes, respectively. In addition, new variables were declared to track the county with the largest turnout. A new for loop was added to iterate through the counties and count the number of votes for each county (shown below). The results are then printed to a text file for easy viewing.
-
+Using the data and the client's pre-written code, a new code was woven in to extract the commission's requested parameters. A new county list ```county_options``` and county dictionary ```county_votes``` were initiated to store the county names and their number of votes, respectively. In addition, new variables were declared to track the county with the largest turnout. A new for loop was added to iterate through the counties and count the number of votes for each county  The results are then printed to a text file for easy viewing. This is shown below:
 ```
-# 6a: Write a for loop to get the county from the county dictionary.
-for county_name in county_votes:
+    # 6a: Write a for loop to get the county from the county dictionary.
+    for county_name in county_votes:
 
-    # 6b: Retrieve the county vote count.
-    cvotes = county_votes[county_name]
+        # 6b: Retrieve the county vote count.
+        cvotes = county_votes[county_name]
 
-    # 6c: Calculate the percentage of votes for the county.
-    county_vote_percent = float(cvotes) / float(total_votes) * 100
+        # 6c: Calculate the percentage of votes for the county.
+        county_vote_percent = float(cvotes) / float(total_votes) * 100
 
-    # 6d: Print the county results to the terminal.
-    county_results_summary = (f"{county_name}: {county_vote_percent:.1f}% ({cvotes:,})\n")
-    print(county_results_summary)
+        # 6d: Print the county results to the terminal.
+        county_results_summary = (f"{county_name}: {county_vote_percent:.1f}% ({cvotes:,})\n")
+        print(county_results_summary)
 
-    # 6e: Save the county votes to a text file.
-    txt_file.write(county_results_summary)
+        # 6e: Save the county votes to a text file.
+        txt_file.write(county_results_summary)
 
-    # 6f: Write an if statement to determine the winning county and get its vote count.
-    if (cvotes > winning_county_count) and (county_vote_percent > winning_county_percent):
-        winning_count_count = cvotes
-        winning_county_percent = county_vote_percent
-        largest_turnout = county_name
+        # 6f: Write an if statement to determine the winning county and get its vote count.
+        if (cvotes > winning_county_count) and (county_vote_percent > winning_county_percent):
+            winning_count_count = cvotes
+            winning_county_percent = county_vote_percent
+            largest_turnout = county_name
+
+    # 7: Print the county with the largest turnout to the terminal.
+    turnout_results = (
+        f'\n-------------------------\n'
+        f'Largest County Turnout: {largest_turnout}\n'
+        f'---------------------------\n')
+    print(turnout_results, end="")
+
+    # 8: Save the county with the largest turnout to a text file.
+    txt_file.write(turnout_results)
 ```
-The following was determined:
+After adding in the above code, the following was determined:
 
 - Jefferson county received 38,855 votes or 10.5% of total votes.
 - Denver county received 306,055 votes or 82.8% of total votes.
