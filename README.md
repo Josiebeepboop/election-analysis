@@ -43,8 +43,31 @@ From the above breakdown, it can determined that Diana DeGette won the election 
 
 An election commission performing an audit on the recent election results requested to view the voter turnout for each county, the percentage of votes from each county (out of the total count), and the county with the highest turnout. The clients, Seth and Tom, have provided the data collected from the election along with the code to determine the winning candidate (with their percentage of total votes and total number of votes). 
 
-Using the data and the client's pre-written code, a new code was woven in to extract the commission's requested parameters. A new county list ```county_options``` and county dictionary ```county_votes``` were initiated to store the county names and their number of votes, respectively. In addition, new variables were declared to track the county with the largest turnout. A new for loop was added to iterate through the counties and count the number of votes for each county. The results are then printed to a text file for easy viewing.
+Using the data and the client's pre-written code, a new code was woven in to extract the commission's requested parameters. A new county list ```county_options``` and county dictionary ```county_votes``` were initiated to store the county names and their number of votes, respectively. In addition, new variables were declared to track the county with the largest turnout. A new for loop was added to iterate through the counties and count the number of votes for each county (shown below). The results are then printed to a text file for easy viewing.
 
+```
+# 6a: Write a for loop to get the county from the county dictionary.
+for county_name in county_votes:
+
+    # 6b: Retrieve the county vote count.
+    cvotes = county_votes[county_name]
+
+    # 6c: Calculate the percentage of votes for the county.
+    county_vote_percent = float(cvotes) / float(total_votes) * 100
+
+    # 6d: Print the county results to the terminal.
+    county_results_summary = (f"{county_name}: {county_vote_percent:.1f}% ({cvotes:,})\n")
+    print(county_results_summary)
+
+    # 6e: Save the county votes to a text file.
+    txt_file.write(county_results_summary)
+
+    # 6f: Write an if statement to determine the winning county and get its vote count.
+    if (cvotes > winning_county_count) and (county_vote_percent > winning_county_percent):
+        winning_count_count = cvotes
+        winning_county_percent = county_vote_percent
+        largest_turnout = county_name
+```
 The following was determined:
 
 - Jefferson county received 38,855 votes or 10.5% of total votes.
